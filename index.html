@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lo Siento Store - Top Up Game</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    header {
+      background: #1e293b;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 30px auto;
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+
+    input, select {
+      background: #334155;
+      color: white;
+    }
+
+    button {
+      background: #22c55e;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #16a34a;
+    }
+
+    .price-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .price-item {
+      background: #334155;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .price-item:hover {
+      background: #475569;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  LO SIENTO STORE
+</header>
+
+<div class="container">
+  <h2>Pilih Game</h2>
+  <select>
+    <option>Mobile Legends</option>
+    <option>Free Fire</option>
+    <option>PUBG Mobile</option>
+  </select>
+
+  <h2>ID Game</h2>
+  <input type="text" placeholder="Masukkan ID + Server">
+
+  <h2>Pilih Nominal</h2>
+  <div class="price-list">
+    <div class="price-item">86 Diamond</div>
+    <div class="price-item">172 Diamond</div>
+    <div class="price-item">257 Diamond</div>
+    <div class="price-item">344 Diamond</div>
+    <div class="price-item">429 Diamond</div>
+    <div class="price-item">569 Diamond</div>
+  <h2>Pilih Pembayaran</h2>
+  <select>
+    <option>DANA</option>
+    <option>OVO</option>
+    <option>GoPay</option>
+    <option>QRIS</option>
+  </select>
+
+  <button onclick="kirimWA()">Beli Sekarang</button>
+</div>
+
+<footer>
+  © 2026 Lo Siento Store - Top Up Murah & Cepat
+</footer>
+<script>
+function kirimWA() {
+  var game = document.querySelector("select").value;
+  var id = document.querySelector("input").value;
+  var nominal = document.querySelector(".price-item.active")?.innerText || "Belum dipilih";
+  var pembayaran = document.querySelectorAll("select")[1].value;
+
+  var pesan = "Order Top Up%0A" +
+              "Game: " + game + "%0A" +
+              "ID: " + id + "%0A" +
+              "Nominal: " + nominal + "%0A" +
+              "Pembayaran: " + pembayaran;
+
+  var noWA = "62881024693882"; // GANTI NOMOR KAMU
+
+  var url = "https://wa.me/" + noWA + "?text=" + pesan;
+
+  window.open(url, "_blank");
+}
+
+// fitur klik nominal
+var items = document.querySelectorAll(".price-item");
+items.forEach(function(item) {
+  item.addEventListener("click", function() {
+    items.forEach(i => i.classList.remove("active"));
+    this.classList.add("active");
+  });
+});
+</script>
+</body>
+</html>
